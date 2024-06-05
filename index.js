@@ -5,7 +5,7 @@ const jwt = require("jsonwebtoken");
 require("dotenv").config({ path: ".env.local" });
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT;
 
 app.use(cors());
 app.use(express.json());
@@ -41,7 +41,7 @@ function verifyToken(req, res, next) {
   }
 }
 
-const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.ujpjon5.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
+const uri = process.env.MONGO_URI;
 
 const client = new MongoClient(uri, {
   serverApi: {
